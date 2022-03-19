@@ -61,14 +61,18 @@ MonoBehaviour:
         displayName: <color=grey>^^The bigger the smaller the weapon sprites in the
           killfeed wil be.</color>
         orderPriority: 16
-      - id: scoreSystemLabel
-        displayName: <color=#FFF986>Score System</color>
+      - id: mapLabel
+        displayName: <color=#FFF986>Minimap</color>
         orderPriority: 17
       integers: []
       floats:
       - id: weaponSpriteScale
         displayName: Weapon Sprite Scale
         orderPriority: 12
+        value: 15
+      - id: mapRange
+        displayName: Map Range
+        orderPriority: 15
         value: 15
       ranges:
       - id: feedLimit
@@ -129,12 +133,40 @@ MonoBehaviour:
         displayName: Capture Point Updates
         orderPriority: 9
         value: 1
-      - id: scoreSystemEnabled
+      - id: minimapEnabled
         displayName: Enabled
         orderPriority: 18
         value: 1
       - id: feedEnabled
         displayName: Enabled
         orderPriority: 6
+        value: 1
+      - id: showFlags
+        displayName: Show Flags
+        orderPriority: 19
+        value: 1
+      - id: showAllyBlips
+        displayName: Show Ally Blips
+        orderPriority: 20
+        value: 1
+      - id: showScanlines
+        displayName: Show Scanlines
+        orderPriority: 21
+        value: 1
+      - id: useTeamColors
+        displayName: Use Team Colors
+        orderPriority: 22
+        value: 0
+      - id: doCulling
+        displayName: Do Culling
+        orderPriority: 23
+        value: 1
+      - id: showResupplyCrates
+        displayName: Show Resupply Crates
+        orderPriority: 24
+        value: 1
+      - id: showEnemyBlips
+        displayName: Show Enemy Blips
+        orderPriority: 25
         value: 1
       dropdowns: []

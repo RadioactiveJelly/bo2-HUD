@@ -9,6 +9,9 @@ function BO2HUD_OverlayReplacer:Start()
 	self.overlayText.color = Color(0,0,0,0)
 	self.overlayText.supportRichText = false
 
+	
+	
+
 	self.hasSpawned = false
 
 	self.lifeTime = 1
@@ -51,21 +54,34 @@ function BO2HUD_OverlayReplacer:Start()
 	self.trueDisplayText = ""
 	self.jumbledText = ""
 	self.inTag = false
+
+	self.isValid = true
+
+	self.transparentColor = Color(1,1,1,0)
+
+	self.alpha = 1
+
+	GameEvents.onActorSpawn.AddListener(self,"onActorSpawn")
+	GameEvents.onCapturePointNeutralized.AddListener(self,"onCapturePointNeutralized")
+end
+
+function BO2HUD_OverlayReplacer:OnDisable()
+	self.isValid = false
 end
 
 function BO2HUD_OverlayReplacer:Update()
 	if self.displayText ~= self.textToDisplay then
-		if self.jumbleTimer < 5 then
+		if self.jumbleTimer < 4 then
 			self.jumbleTimer = self.jumbleTimer + (Time.deltaTime * 200)
-			if(self.jumbleTimer >= 5) then
+			if(self.jumbleTimer >= 4) then
 				self:JumbleText(self.currentCharacterIndex)
 				self.displayText = self.jumbledText
 				self.jumbleTimer = 0
 			end
 		end
-		if self.timer < 10 then
+		if self.timer < 8 then
 			self.timer = self.timer + (Time.deltaTime * 200)
-			if self.timer >= 10 then
+			if self.timer >= 8 then
 				self.currentCharacterIndex = self.currentCharacterIndex + 1
 				local c = self.textToDisplay:sub(self.currentCharacterIndex,self.currentCharacterIndex)
 				if c == "<" then
@@ -77,16 +93,22 @@ function BO2HUD_OverlayReplacer:Update()
 				if not self.inTag then
 					self.timer = 0
 				else
-					self.timer = 10 - Time.deltaTime
+					self.timer = 8 - Time.deltaTime
 				end
 			end
 		end
-	elseif self.displayText == self.textToDisplay and self.lifeTime > 0 then
-		self.lifeTime = self.lifeTime - Time.deltaTime
-		if self.lifeTime <= 0 then
+	elseif self.displayText == self.textToDisplay then
+		if self.lifeTime > 0 then
+			self.lifeTime = self.lifeTime - Time.deltaTime
+		else
+			self.alpha = self.alpha - (Time.deltaTime)
+			self.targets.canvasGroup.alpha = self.alpha
+		end
+		
+		--[[if self.lifeTime <= 0 then
 			self.displayText = ""
 			self.textToDisplay = ""
-		end
+		end]]--
 	end
 	self.targets.textObject.text = self.displayText
 
@@ -101,6 +123,8 @@ function BO2HUD_OverlayReplacer:Update()
 	if Input.GetKeyDown(KeyCode.U) then
 		Overlay.ShowMessage("<color=#0000FF>EAGLE</color> LOST A BATTALION!", 5)
 	end]]--
+
+	
 end
 
 function BO2HUD_OverlayReplacer:monitorOverlayText()
@@ -122,6 +146,12 @@ function BO2HUD_OverlayReplacer:UpdateText(text)
 		formattedText = string.gsub(text, "<color=#FF0000>RAVEN</color>", self.redTeamText)
 	end
 
+	formattedText = string.upper(formattedText)
+
+	self.alpha = 1
+	self.targets.canvasGroup.alpha = 1
+
+	self.displayText = ""
 	self.textToDisplay = formattedText
 	self.stringLength = #formattedText
 	self.currentCharacterIndex = 1
@@ -156,5 +186,22 @@ function BO2HUD_OverlayReplacer:JumbleText(idx)
 		if textByte == tagEnd then
 			textTag = false
 		end
+	end
+end
+
+function BO2HUD_OverlayReplacer:onCapturePointNeutralized(capturePoint, previousOwner)
+	if self.isValid and self.hasSpawnedOnce or Player.actor.team == Team.Neutral then
+		local capturePointText = capturePoint.name
+		if previousOwner == Team.Red then
+			Overlay.ShowMessage("<color=#0000FF>EAGLE</color> NEUTRALIZED " .. capturePointText)
+		else
+			Overlay.ShowMessage("<color=#FF0000>RAVEN</color> NEUTRALIZED " .. capturePointText)
+		end
+	end
+end
+
+function BO2HUD_OverlayReplacer:onActorSpawn(actor)
+	if(actor == Player.actor) then
+		self.hasSpawnedOnce = true
 	end
 end
