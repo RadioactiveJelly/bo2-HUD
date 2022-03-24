@@ -3,7 +3,7 @@ behaviour("BO2HUD_ScoreDisplay")
 
 function BO2HUD_ScoreDisplay:Start()
 	-- Run when behaviour is created
-	local scoreSystemObj = self.gameObject.Find("ScoreSystem")
+	local scoreSystemObj = self.gameObject.Find("Score System")
 	if scoreSystemObj then
 		self.scoreSystem = scoreSystemObj.GetComponent(ScriptedBehaviour)
 	end

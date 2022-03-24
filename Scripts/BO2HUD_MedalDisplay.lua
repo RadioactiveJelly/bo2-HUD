@@ -2,12 +2,7 @@
 behaviour("BO2HUD_MedalDisplay")
 
 function BO2HUD_MedalDisplay:Start()
-	--GameEvents.onActorSpawn.AddListener(self,"onActorSpawn")
-
-	local medalSystemObj = self.gameObject.Find("Medal System")
-	if medalSystemObj then
-		self.medalSystem = medalSystemObj.GetComponent(ScriptedBehaviour)
-	end
+	self.script.StartCoroutine(self:DelayedStart())
 
 	self.killStreakMedals = self.targets.killStreakMedals
 	self.killMedals = self.targets.killMedals
@@ -28,6 +23,20 @@ function BO2HUD_MedalDisplay:Start()
 	self.targets.canvasGroup.alpha = 0
 end
 
+function BO2HUD_MedalDisplay:DelayedStart()
+	return function()
+		coroutine.yield(WaitForSeconds(0.1))
+		local scoreSystemObj = self.gameObject.Find("Score System")
+		if scoreSystemObj then
+			local medalSystemObj = scoreSystemObj.transform.Find("Medal System")
+			if medalSystemObj then
+				self.medalSystem = medalSystemObj.gameObject.GetComponent(ScriptedBehaviour)
+				self.medalSystem.self:DisableDefaultHUD()
+			end
+		end
+	end
+end
+
 function BO2HUD_MedalDisplay:Update()
 
 	self.timer = self.timer + Time.deltaTime
@@ -46,7 +55,6 @@ function BO2HUD_MedalDisplay:Update()
 			self.canvasAlpha = self.canvasAlpha - Time.deltaTime
 			self.targets.canvasGroup.alpha = self.canvasAlpha
 		end
-		
 	end
 
 	if(self.flashAlpha >= 0) then
@@ -77,7 +85,7 @@ function BO2HUD_MedalDisplay:ShowMedal()
 	if medal.bonusPoints > 0 and medal.multiplierBonus == 0 then
 		self.targets.bonusText.text = "+" .. medal.bonusPoints .. " points"
 	elseif medal.bonusPoints == 0 and medal.multiplierBonus > 0 then
-		self.targets.bonusText.text = "Score Multiplier + " .. medal.multiplierBonus
+		self.targets.bonusText.text = "Score Multiplier +" .. medal.multiplierBonus
 	end
 
 	self.medalSystem.self:RemoveTopMedal()
