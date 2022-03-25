@@ -3,10 +3,7 @@ behaviour("BO2HUD_ScoreDisplay")
 
 function BO2HUD_ScoreDisplay:Start()
 	-- Run when behaviour is created
-	local scoreSystemObj = self.gameObject.Find("Score System")
-	if scoreSystemObj then
-		self.scoreSystem = scoreSystemObj.GetComponent(ScriptedBehaviour)
-	end
+	self.script.StartCoroutine(self:DelayedStart())
 
 	self.displayTotal = 0
 
@@ -35,6 +32,17 @@ function BO2HUD_ScoreDisplay:Start()
 	--GameObject.Find("Kill Indicator Parent Panel").gameObject.SetActive(false)
 end
 
+function BO2HUD_ScoreDisplay:DelayedStart()
+	return function()
+		coroutine.yield(WaitForSeconds(0.1))
+		local scoreSystemObj = self.gameObject.Find("Score System")
+		if scoreSystemObj then
+			self.scoreSystem = scoreSystemObj.GetComponent(ScriptedBehaviour)
+			self.scoreSystem.self:DisableDefaultHUD()
+		end
+	end
+end
+
 function BO2HUD_ScoreDisplay:Update()
 	self.timer = self.timer + Time.deltaTime
 	self.fadeTimer = self.fadeTimer + Time.deltaTime
@@ -59,6 +67,7 @@ function BO2HUD_ScoreDisplay:Update()
 				self.flash.gameObject.SetActive(true)
 			end
 		end
+		--self.targets.finalScore.text = "Score: " .. self.scoreSystem.self.totalPoints
 	end
 
 	if self.fadeTimer >= self.timeBeforeFade and self.displayTotal > 0 then
@@ -75,6 +84,8 @@ function BO2HUD_ScoreDisplay:Update()
 			self.flashAlpha = 0
 		end
 	end
+
+	
 end
 
 function BO2HUD_ScoreDisplay:Flash()

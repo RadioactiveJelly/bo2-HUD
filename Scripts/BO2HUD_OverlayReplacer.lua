@@ -103,16 +103,14 @@ function BO2HUD_OverlayReplacer:Update()
 		else
 			self.alpha = self.alpha - (Time.deltaTime)
 			self.targets.canvasGroup.alpha = self.alpha
+			if self.alpha <= 0 then
+				Overlay.ShowMessage("", 0)
+			end
 		end
-		
-		--[[if self.lifeTime <= 0 then
-			self.displayText = ""
-			self.textToDisplay = ""
-		end]]--
 	end
 	self.targets.textObject.text = self.displayText
 
-	--[[if Input.GetKeyDown(KeyCode.O) then
+	if Input.GetKeyDown(KeyCode.O) then
 		Overlay.ShowMessage("This text is <color=blue>blue</color>", 5)
 	end
 
@@ -122,7 +120,7 @@ function BO2HUD_OverlayReplacer:Update()
 
 	if Input.GetKeyDown(KeyCode.U) then
 		Overlay.ShowMessage("<color=#0000FF>EAGLE</color> LOST A BATTALION!", 5)
-	end]]--
+	end
 
 	
 end
@@ -136,6 +134,9 @@ function BO2HUD_OverlayReplacer:onOverlayTextChange()
 end
 
 function BO2HUD_OverlayReplacer:UpdateText(text)
+	if text == "" then
+		return
+	end
 	self.lifeTime = 3
 
 	local formattedText = text

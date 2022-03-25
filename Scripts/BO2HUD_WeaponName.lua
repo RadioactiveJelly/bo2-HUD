@@ -51,6 +51,7 @@ function BO2HUD_WeaponName:onChangeWeapon()
 		name = Player.actor.activeWeapon.weaponEntry.name
 		name = self:CleanString(name,"EXTAS", "EXTAS%s+-%s")
 		name = self:CleanString(name,"RWP2_", "RWP2_")
+		name = self:CleanString(name," Suppressed", " Suppressed")
 	else
 		name = Player.actor.activeWeapon.gameObject.name
 		name = self:CleanString(name,"(Clone)", "%(Clone%)")
