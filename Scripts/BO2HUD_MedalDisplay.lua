@@ -7,6 +7,7 @@ function BO2HUD_MedalDisplay:Start()
 	self.killStreakMedals = self.targets.killStreakMedals
 	self.killMedals = self.targets.killMedals
 	self.rapidKillMedals = self.targets.rapidKillMedals
+	self.otherMedals = self.targets.otherMedals
 	
 	self.medalName = self.targets.name
 	self.medalSprite = self.targets.medalImage
@@ -76,6 +77,9 @@ function BO2HUD_MedalDisplay:ShowMedal()
 		self.medalName.text = medal.medalName
 	elseif(medal.medalType == "Kill") then
 		self.medalSprite.sprite = self.killMedals.GetSprite(medal.medalName)
+		self.medalName.text = medal.medalName
+	elseif(medal.medalType == "Other") then
+		self.medalSprite.sprite = self.otherMedals.GetSprite(medal.medalName)
 		self.medalName.text = medal.medalName
 	elseif(medal.medalType == "RapidKills") then
 		self.medalSprite.sprite = self.rapidKillMedals.GetSprite(medal.medalName)

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mutators:
   - name: <color=orange>Black Ops 2</color> Style HUD
-    description: <color=orange>v 1.0.3</color>
+    description: <color=orange>v 1.0.5</color>
     menuImage: {fileID: 2800000, guid: e82cbb54a6420124ab14f338bed39058, type: 3}
     mutatorPrefab: {fileID: 1849918515777374692, guid: 722c85cbc25728a48894d88a95692b40, type: 3}
     configuration:
@@ -133,5 +133,9 @@ MonoBehaviour:
       - id: feedEnabled
         displayName: Enabled
         orderPriority: 6
+        value: 1
+      - id: compassVisibility
+        displayName: Compass
+        orderPriority: 4
         value: 1
       dropdowns: []

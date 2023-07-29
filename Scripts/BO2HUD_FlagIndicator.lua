@@ -14,18 +14,22 @@ function BO2HUD_FlagIndicator:Start()
 	--[[if Player.actor then
 		self.script.AddValueMonitor("MonitorCapturePoint", "OnCapturePointChange")
 	end]]--
-	
+	if GameManager.buildNumber > 26 then
+		PlayerHud.HideUIElement(UIElement.FlagCaptureProgress)
+	end
 end
 
 function BO2HUD_FlagIndicator:Update()
 	-- Run every frame
 	if Player.actor.currentCapturePoint then
 		local capPoint = Player.actor.currentCapturePoint
-		if self.captureIndicator == nil then
-			self.captureIndicator = GameObject.Find("Flag Capture Indicator")
-			local bg = GameObject.Find("Flag Capture Indicator Edge")
-			self.captureIndicator.transform.parent.position = Vector3(5000,5000,0)
-			bg.transform.position = Vector3(5000,5000,0)
+		if GameManager.buildNumber <= 26 then
+			if self.captureIndicator == nil then
+				self.captureIndicator = GameObject.Find("Flag Capture Indicator")
+				local bg = GameObject.Find("Flag Capture Indicator Edge")
+				self.captureIndicator.transform.parent.position = Vector3(5000,5000,0)
+				bg.transform.position = Vector3(5000,5000,0)
+			end
 		end
 		
 		self.targets.indicatorObject.SetActive(true)

@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6953345621758130349
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1441826057351198632, guid: ee1796ceb8e71f5409b29e02d99868b7, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441826057351198632, guid: ee1796ceb8e71f5409b29e02d99868b7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 684.2649
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441826057351198632, guid: ee1796ceb8e71f5409b29e02d99868b7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 95.930176
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441826057351198632, guid: ee1796ceb8e71f5409b29e02d99868b7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441826057351198632, guid: ee1796ceb8e71f5409b29e02d99868b7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441826057351198632, guid: ee1796ceb8e71f5409b29e02d99868b7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441826057351198632, guid: ee1796ceb8e71f5409b29e02d99868b7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441826057351198632, guid: ee1796ceb8e71f5409b29e02d99868b7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441826057351198632, guid: ee1796ceb8e71f5409b29e02d99868b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441826057351198632, guid: ee1796ceb8e71f5409b29e02d99868b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441826057351198632, guid: ee1796ceb8e71f5409b29e02d99868b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1447048653954119592, guid: ee1796ceb8e71f5409b29e02d99868b7, type: 3}
+      propertyPath: m_Name
+      value: BO2HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 1551253920166265428, guid: ee1796ceb8e71f5409b29e02d99868b7, type: 3}
+      propertyPath: mutators.Array.data[0].name
+      value: <color=orange>Black Ops 2</color> Style HUD [Linux]
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ee1796ceb8e71f5409b29e02d99868b7, type: 3}

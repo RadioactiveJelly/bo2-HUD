@@ -110,7 +110,7 @@ function BO2HUD_OverlayReplacer:Update()
 	end
 	self.targets.textObject.text = self.displayText
 
-	if Input.GetKeyDown(KeyCode.O) then
+	--[[if Input.GetKeyDown(KeyCode.O) then
 		Overlay.ShowMessage("This text is <color=blue>blue</color>", 5)
 	end
 
@@ -120,9 +120,7 @@ function BO2HUD_OverlayReplacer:Update()
 
 	if Input.GetKeyDown(KeyCode.U) then
 		Overlay.ShowMessage("<color=#0000FF>EAGLE</color> LOST A BATTALION!", 5)
-	end
-
-	
+	end]]--
 end
 
 function BO2HUD_OverlayReplacer:monitorOverlayText()
